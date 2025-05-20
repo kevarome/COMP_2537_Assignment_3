@@ -2,11 +2,25 @@ body {
   margin: 0px;
 }
 
+/* Pokemon theme font */
+span {
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
+  font-weight: bold !important;
+  color: #ffe600 !important; 
+  text-shadow:
+    -2px -2px 0 #356abc,
+     2px -2px 0 #356abc,
+    -2px  2px 0 #356abc,
+     2px  2px 0 #356abc,
+     0px -2px 0 #356abc,
+     0px  2px 0 #356abc,
+    -2px  0px 0 #356abc,
+     2px  0px 0 #356abc;
+}
+
 #game_grid {
   border: 2px tomato solid;
   width: 600px;
-  /* Remove or comment out the fixed height: */
-  /* height: 400px; */
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -19,7 +33,7 @@ body {
   perspective: 1000px;
   transform-style: preserve-3d;
   box-sizing: border-box;
-  aspect-ratio: 1 / 1; /* Makes cards square if supported */
+  aspect-ratio: 1 / 1; 
 }
 
 
@@ -47,7 +61,7 @@ img {
 .card.medium:not(.d-none) { width: 25%; }
 .card.hard:not(.d-none) { width: 16.66%; }
 
-/* Add at the end of your style.css */
+/* Dark Mode Styles */
 body.dark-mode {
   background-color: #181a1b !important;
   color: #f1f1f1 !important;
@@ -79,3 +93,4 @@ body.dark-mode .btn-secondary {
   background-color: #444 !important;
   border-color: #444 !important;
 }
+
