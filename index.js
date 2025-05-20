@@ -1,34 +1,44 @@
-
-
-
 function setup () {
   let firstCard = undefined
   let secondCard = undefined
-  $(".card").on(("click"), function () {
-    $(this).toggleClass("flip");
+  let isFlipping = false
 
-    if (!firstCard)
+  $(".card").on("click", function () {
+    // Edge case 1: Ignore clicks on already flipped cards
+    if ($(this).hasClass("flip")) return
+
+    // Edge case 2: Ignore clicks during flip animation
+    if (isFlipping) return
+
+    $(this).toggleClass("flip")
+
+    if (!firstCard) {
       firstCard = $(this).find(".front_face")[0]
-    else {
+    } else {
       secondCard = $(this).find(".front_face")[0]
-      console.log(firstCard, secondCard);
-      if (
-        firstCard.src
-        ==
-        secondCard.src
-      ) {
-        console.log("match")
+      isFlipping = true
+
+      if (firstCard.src === secondCard.src) {
+        // Match found
         $(`#${firstCard.id}`).parent().off("click")
         $(`#${secondCard.id}`).parent().off("click")
+        resetCards()
       } else {
-        console.log("no match")
+        // No match, flip back after delay
         setTimeout(() => {
           $(`#${firstCard.id}`).parent().toggleClass("flip")
           $(`#${secondCard.id}`).parent().toggleClass("flip")
+          resetCards()
         }, 1000)
       }
     }
-  });
+  })
+
+  function resetCards() {
+    firstCard = undefined
+    secondCard = undefined
+    isFlipping = false
+  }
 }
 
 $(document).ready(setup)
