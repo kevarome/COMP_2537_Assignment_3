@@ -5,7 +5,8 @@ body {
 #game_grid {
   border: 2px tomato solid;
   width: 600px;
-  height: 400px;
+  /* Remove or comment out the fixed height: */
+  /* height: 400px; */
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -13,11 +14,12 @@ body {
 
 
 .card {
-  width: 33.3%;
   position: relative;
   transition: transform 1s;
   perspective: 1000px;
   transform-style: preserve-3d;
+  box-sizing: border-box;
+  aspect-ratio: 1 / 1; /* Makes cards square if supported */
 }
 
 
@@ -39,4 +41,41 @@ img {
 
 .front_face {
   transform: rotateY(180deg);
+}
+
+.card.easy:not(.d-none) { width: 33.33%; }
+.card.medium:not(.d-none) { width: 25%; }
+.card.hard:not(.d-none) { width: 16.66%; }
+
+/* Add at the end of your style.css */
+body.dark-mode {
+  background-color: #181a1b !important;
+  color: #f1f1f1 !important;
+}
+
+body.dark-mode #game_grid {
+  background: #23272b;
+  border-color: #444;
+}
+
+body.dark-mode .card {
+  background: #23272b;
+}
+
+body.dark-mode .btn,
+body.dark-mode select,
+body.dark-mode #game_header {
+  color: #f1f1f1 !important;
+  background: #23272b !important;
+  border-color: #444 !important;
+}
+
+body.dark-mode .btn-primary {
+  background-color: #375a7f !important;
+  border-color: #375a7f !important;
+}
+
+body.dark-mode .btn-secondary {
+  background-color: #444 !important;
+  border-color: #444 !important;
 }
